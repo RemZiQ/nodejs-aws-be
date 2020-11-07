@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Kona Operator",
+    "description": "dh bike",
+    "price": 6849,
+    "available": 2,
+    "image": "https://images.konaworld.com/2021/med/operator_cr.jpg",
+    "id": "6ecd6c6a-e77c-4f05-8af9-89ae9524cf76"
+  },
+  {
+    "title": "Kona Remote 160",
+    "description": "electro bike",
+    "price": 9849,
+    "available": 2,
+    "image": "https://images.konaworld.com/2021/med/remote_160.jpg",
+    "id": "506d4ad8-84ed-49d8-be3a-e2654b02e580"
+  },
+  {
+    "title": "Kona Hei Hei",
+    "description": "bike bike",
+    "price": 4449,
+    "available": 2,
+    "image": "https://images.konaworld.com/2021/med/hei_hei.jpg",
+    "id": "4c26cc5b-18a4-4155-8ae0-508b43e09076"
+  },
+  {
+    "title": "Kona Hei Hei CR",
+    "description": "bike bike",
+    "price": 4449,
+    "available": 2,
+    "image": "https://images.konaworld.com/2021/med/hei_hei_cr_dl.jpg",
+    "id": "fc2fae6f-745e-43da-b9d3-aaac8b584a6d"
+  },
+  {
+    "title": "Kona Shonky",
+    "description": "dirt bike",
+    "price": 3179,
+    "available": 7,
+    "image": "https://images.konaworld.com/2021/med/shonky.jpg",
+    "id": "db73f340-eedf-40c5-80ec-0db6e78e15ea"
+  },
+  {
+    "title": "Kona Honzo",
+    "description": "kid bike",
+    "price": 899,
+    "available": 11,
+    "image": "https://images.konaworld.com/2021/med/honzo_24.jpg",
+    "id": "a641368d-0fff-4e8b-a903-08584ab7d548"
+  }
+]
