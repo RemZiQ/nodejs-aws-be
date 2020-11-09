@@ -21,8 +21,6 @@ const dbOptions: ClientConfig = {
 export const getAllProducts: APIGatewayProxyHandler = async (event, _context) => {
   // emulate lambda calling logging
   console.log(event);
-  // debugging
-  console.log('PG_PORT___', PG_PORT, "typeof___", typeof (PG_PORT));
   const client = new Client(dbOptions);
   await client.connect();
   const corsHeaders = getCorsHeaders();
