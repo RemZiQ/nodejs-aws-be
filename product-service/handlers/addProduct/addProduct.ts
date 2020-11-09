@@ -47,7 +47,7 @@ export const addProduct: APIGatewayProxyHandler = async (event, _context) => {
     return {
       statusCode: 201,
       headers: getCorsHeaders(),
-      body: JSON.stringify({ message: `${title} created success` }),
+      body: JSON.stringify({ message: `${title} created successfully` }),
     };
   } catch (e) {
     // emulate error logging
