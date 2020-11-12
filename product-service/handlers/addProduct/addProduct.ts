@@ -1,7 +1,7 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import { Client, ClientConfig } from 'pg';
 import 'source-map-support/register';
-import { getAllProductsQuery } from './constants';
+import { insertProductQuery, insertStocksQuery } from './constants';
 import { getCorsHeaders } from '../../helpers/getCorsHeaders';
 
 const { PG_HOST, PG_PORT, PG_DATABASE, PG_USERNAME, PG_PASSWORD } = process.env;
@@ -18,19 +18,36 @@ const dbOptions: ClientConfig = {
   connectionTimeoutMillis: 5000,
 };
 
-export const getAllProducts: APIGatewayProxyHandler = async (event, _context) => {
+export const addProduct: APIGatewayProxyHandler = async (event, _context) => {
   // emulate lambda calling logging
   console.log(event);
+  const corsHeaders = getCorsHeaders();
+  const product = event?.body && JSON.parse(event.body);
+
+  if (!(product && product.title && product.description
+    && product.price && product.image && product.count
+  )) {
+    return {
+      statusCode: 400,
+      headers: corsHeaders,
+      body: JSON.stringify({ message: 'Bad Request' }),
+    }
+  }
+
   const client = new Client(dbOptions);
   await client.connect();
-  const corsHeaders = getCorsHeaders();
+
   try {
-    const { rows: products } = await client.query(getAllProductsQuery);
-    console.log('___products', products);
+    await client.query('BEGIN');
+    const { title, description, price, image, count } = product;
+    const { rows } = await client.query(insertProductQuery, [title, description, price, image]);
+    const [{ id }] = rows;
+    await client.query(insertStocksQuery, [id, count]);
+    await client.query('COMMIT');
     return {
-      statusCode: 200,
+      statusCode: 201,
       headers: getCorsHeaders(),
-      body: JSON.stringify(products),
+      body: JSON.stringify({ message: `${title} created successfully` }),
     };
   } catch (e) {
     // emulate error logging
